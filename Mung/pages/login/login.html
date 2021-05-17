@@ -7,9 +7,6 @@
 <link rel="stylesheet" href="../../css/common.css">
 <link rel="stylesheet" href="../../css/login.css">
 <link rel="stylesheet" href="../../library/fontawesome-free-5.15.3-web/css/all.min.css">
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<scrip src="https://developers.kakao.com/sdk/js/kakao.js"></scrip>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 </head>
 <body>
 	<header>
@@ -52,6 +49,7 @@
                     </h3>
                     <span class="box int_id">
                         <input type="text" id="id" class="int" maxlength="20">
+                    </span>
                 </div>
 
                 <!-- PW1 -->
@@ -84,10 +82,11 @@
 	<!--js 파일-->
 	<script src="../../js/jquery-3.6.0.min.js"></script>
 	<script src="../../js/login.js"></script>
-	<scrip src="../../js/common.js"></script>
-
-
-    <script>
+	<script src="../../js/common.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"></script>
+<script>
     // 카카오 로그인
     Kakao.init('e3aaa61ff244ea2fcdf3b04a2c799db6');
     Kakao.Auth.createLoginButton({ 
@@ -116,7 +115,6 @@
         naver_id_login.setState(state);
         naver_id_login.setPopup();
         naver_id_login.init_naver_id_login();
-  
 </script>
 </body>
 </html>

@@ -1,11 +1,16 @@
 @charset "utf-8";
 
+.contents p {
+    margin: 0 auto;
+    text-align: center;
+}
 
 .contents iframe {
     width: 430px;
     height: 230px;
     margin-right: 15px;
     margin-bottom: 15px;
+    border: 0px;
 }
 .contents h4 {
     font-size: 25px;
@@ -70,6 +75,7 @@
 }
 
 
+
  /* 스마트폰 */
 @media screen and (max-width: 540px) {
 .contents iframe {
@@ -92,7 +98,7 @@
     height: auto;
     margin: auto; */
 }
-  } 
+
 
   /* pc */
   @media screen and (min-width:1024px) {

@@ -51,7 +51,6 @@ button {
     margin-left: 45%;
 }
 
-/
 button:hover{
     background-color: rgb(212, 212, 212);
 }
@@ -60,7 +59,7 @@ button:hover{
  /* 스마트폰 */
 /* 창크기 최대 530이하일떄 */
  @media screen and (max-width:530px) {
-
+ }
 /* 태블릿 */
 /* 540이상 768이하*/
 @media screen and (min-width:540px) and (max-width:768px) {
