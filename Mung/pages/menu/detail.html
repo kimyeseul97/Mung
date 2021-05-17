@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>mung</title>
 <link rel="stylesheet" href="../../css/common.css">
-<link rel="stylesheet" href="../../css/list.css">
-<link rel="stylesheet" href="../../css/write.css">
+<link rel="stylesheet" href="../../css/detail.css">
 <link rel="stylesheet" href="../../library/fontawesome-free-5.15.3-web/css/all.min.css">
 </head>
 
@@ -15,72 +14,84 @@
 		<!-- 메뉴바 -->
 		<div class="gnb">
             <div class="logo">
-                <a href="../../index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
+                <a href="./index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
             </div>
 			<!-- pc메뉴 -->
 			<div class="nav_right">
 				<a href="#"><i class="fas fa-bars"></i></a>
 			</div>
 				<ul class="nav_box">
-					<li class="exit">
-					<a href="#"><i class="far fa-times-circle" style="color: rgb(0, 7, 110); padding-left: 10px;"></i></a>
-					</li>
 					<li><a href="../../index.html">Home</a></li>
 					<li><a href="../menu/video.html">Mung-Info</a></li>
 					<li><a href="../menu/list.html">Mung-Review</a></li>
 					<li><a href="../menu/list_2.html">Mung-talk</a></li>
+					<li class="exit">
+						<a href="#"><i class="far fa-times-circle" style="color: rgb(184, 184, 184);"></i></a>
+					</li>
 				</ul>
 				<ul class="nav">
 					<li><a href="../login/join.html">JOIN</a></li>
 					<li><a href="../login/login.html">LOGIN</a></li>
 				</ul>
         </div>
+</header>
 
-        <div id="container">
-            <h2>게시판List</h2>
-        </div>
+    <div id="container">
+        <h2>게시글 작성</h2>
+    </div>
     
-		<table>
-			<colgroup>
-				<col width='60'><col width='300'><col width='100'>
-			</colgroup>
-			<thead>
-				<tr id="table_top">
-					<th>글제목</th>
-					<td name="title" id="title"></td>
-				</tr>
-				<tr id="table_top">
-					<th>글내용</th>
-				</tr>
-				<tr id="table_contetns" style="text-align: center;">
-					<td name="content" id="content"></td>
-				</tr>
-			</thead>
+<!-- 게시판 리스트 폼 -->
+	<div class="contents">
+	<form name="testForm" id="testForm">
+		<table class = "table2">
+			<tr>
+			<td>제목</td>
+			<td><p id="title" size=60></p></td>
+			</tr>
+			<tr>
+			<td>내용</td>
+			<td><p id="content" cols=85 rows=15 ></p></td>
+			</tr>
 		</table>
+	</form>
+		<div>
+			<button id="btn_modify" type="button">글수정</button>
+			<button id="btn_list" type="button">글목록</button>
+		</div>
+	</div>
 
-<div>
-	<button id="btn_modify" type="button">글수정</button>
-</div>
 
-		<footer class="footer">
-            <p>© 2021 Mung by kimyeseul</p>
-        </footer>
+
+	<div class="container">
+		<div class="container_left">
+			<h3 style="padding-bottom: 10px;">Mung!</h3>
+			<p style="font-size: 20px;">How to be a good puppy owner</p>
+		</div>
+		<div class="container_right">
+			<p style="font-size: 20px; color: rgb(131, 131, 131);">More information</p>
+			<div id="icon">
+			<a href="https://www.youtube.com/results?search_query=%EA%B0%95%EC%95%84%EC%A7%80"><p style="color: rgb(190, 190, 190);"><i class="fab fa-youtube"></i></p></a>
+			<a href="https://www.google.com/search?q=%EA%B0%95%EC%95%84%EC%A7%80%EA%BF%80%ED%8C%81&source=lnms&tbm=vid&sa=X&ved=2ahUKEwjZlqX0y8jwAhWFKqYKHREMB5gQ_AUoAnoECAEQBA&biw=1032&bih=682"><p style="color: rgb(190, 190, 190);"><i class="fab fa-google"></i></p></a>
+			</div>
+		</div>
+	</div>	
+
+
+	<footer class="footer">
+        <p>© 2021 Mung by kimyeseul</p>
+    </footer>
 
 	<!--js 파일-->
 	<script src="../../js/jquery-3.6.0.min.js"></script>
-    <script src="../../js/common.js"></script>
-	
+	<script src="../../js/common.js"></script>
     <script>
-			$("btn_modify").click(function javascript_onclikc(){
-				$(location).attr('href', 'modify.html');
-			});
-
-
+        function to_ajax(){
+            var queryString = $("form[name=testForm]").serialize();
             $.ajax({
                 type: "get",
                 url: "http://localhost:3000/detail",
                 dataType: "json",
-                // data: queryString,
+                data: queryString,
                 success:function(data) {
                     //정상 요청, 응답 시 처리 작업
                     console.log(JSON.stringify(data));
@@ -91,23 +102,14 @@
 
 						$("#title").text(result.TITLE);
 	  					$("#content").text(result.CONTENT);
-
-					// for(var i=0; i < result.length; i++) {
-					// 	console.log(result[i].ID);
-					// 	console.log(result[i].TITLE);
-					// 	console.log(result[i].CONTENT);
-
-					// 	$(".name").append(result[i].ID+"<br>");
-					// 	$("#title").append(result[i].TITLE+"<br>");
-					// 	$("#content").append(result[i].TITLE+"<br>"+result[i].CONTENT+"<br>");
-					// } 
 				},
                 error:function(request,status,error) {
                     console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 },
-            });
-    </script>
 
+            });
+        }
+    </script>
 </body>
 </html>
 
