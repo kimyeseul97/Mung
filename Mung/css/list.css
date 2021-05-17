@@ -1,0 +1,72 @@
+table{
+  margin-top: 20px;
+  width: auto;
+}
+
+th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+  }
+
+td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+  }
+
+tr{
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+#table_top{
+  font-size: 23px;
+  color: rgb(83, 83, 83);
+}
+#table_contetns{
+  font-size: 18px;
+  color: gray;
+}
+ 
+
+button {
+    width:200px;
+    background-color: #e2e2e2;
+    border: none;
+    color:rgb(168, 168, 168);
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius:10px;
+    margin-left: 45%;
+}
+
+/
+button:hover{
+    background-color: rgb(212, 212, 212);
+}
+
+/* 창크기조절 */
+ /* 스마트폰 */
+/* 창크기 최대 530이하일떄 */
+ @media screen and (max-width:530px) {
+
+/* 태블릿 */
+/* 540이상 768이하*/
+@media screen and (min-width:540px) and (max-width:768px) {
+
+}
+
+@media screen and (min-width:769px) and (max-width:1280px) {
+
+}

@@ -1,0 +1,141 @@
+.contents {
+    margin: auto 0;
+    margin-top: 20px;
+}
+
+.contents #form{
+border-collapse: separate;
+border-spacing: 1px;
+text-align: left;
+line-height: 2.0;
+border-top: 1px solid #ccc;
+margin : 20px 10px;
+}
+
+.table2 tr {
+    width: 500px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+.table2 td {
+     padding-right: 10px;
+     color: gray;
+     width: 150px;
+     padding: 10px;
+     vertical-align: top;
+     border-bottom: 1px solid #ccc;
+}
+
+.table2 td input {
+    width: 500px;    
+}
+
+textarea{
+    border: 0px;
+    background-color: rgb(250, 250, 250);
+    width: auto;
+    height: 400px;
+}
+
+
+input[type=text] {
+   border: 0px;
+   height: 30px;
+}
+
+input[type=button] {
+    width:200px;
+    background-color: #e2e2e2;
+    border: none;
+    color:rgb(168, 168, 168);
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius:10px;
+    margin-left: 45%;
+}
+
+input[type=button]:hover{
+    background-color: rgb(212, 212, 212);
+}
+
+
+/* 컨테이너 내용 */
+
+.container{
+    display: flex;
+    padding-top: 70px;
+}
+
+.container_left{
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+    padding-top: 60px;
+    padding-right: 10px;
+    text-align: left;
+    height: 300px;
+    width: 70%;
+    padding-left: 10px;
+    background-color: rgb(0, 14, 136);
+}
+
+.container_right{
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+    padding-top: 100px;
+    text-align: left;
+    height: 300px;
+    width: 70%;
+    background-color: rgb(255, 245, 217);
+    padding-left: 10px;
+}
+
+.container_right #icon {
+    display: inline-flex;
+    margin-left: 40%;
+}
+
+.container_right p{
+    text-align: center;
+}
+
+.container_right a p i{
+    font-size: 40px;
+    padding-left: 20px;
+}
+
+.container_right a p i:hover{
+    color: red;
+}
+
+
+/* 창크기조절 */
+ /* 스마트폰 */
+/* 창크기 최대 530이하일떄 */
+ @media screen and (max-width:530px) {
+    .contents .table2 td{
+        font-size: 15px;
+        display:flex;
+        margin: 0 auto;
+        width: auto;
+    }
+  }
+
+/* 태블릿 */
+/* 540이상 768이하*/
+@media screen and (min-width:540px) and (max-width:768px) {
+
+}
+
+@media screen and (min-width:769px) and (max-width:1280px) {
+
+}

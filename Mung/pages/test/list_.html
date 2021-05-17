@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="testForm" id="testForm">
+        <td name="id" id="id"></td>
+        <td name="title" id="title"><td>
+        <td for="text" name="content" id="content"><td>
+    </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        function to_ajax(){
+            // var queryString = $("form[name=testForm]").serialize();
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3000/list",
+                dataType: "json",
+                // data: queryString,
+                success:function(data) {
+                    //정상 요청, 응답 시 처리 작업
+                    console.log(JSON.stringify(data));
+                },
+                error:function(request,status,error) {
+                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                },
+                complete:function(data,textStatus) {
+                    //작업 완료 후 처리
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mung</title>
+<link rel="stylesheet" href="../../css/common.css">
+<link rel="stylesheet" href="../../css/list.css">
+<link rel="stylesheet" href="../../css/write.css">
+<link rel="stylesheet" href="../../library/fontawesome-free-5.15.3-web/css/all.min.css">
+</head>
+
+<body>
+	<header>
+		<!-- 메뉴바 -->
+		<div class="gnb">
+            <div class="logo">
+                <a href="../../index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
+            </div>
+			<!-- pc메뉴 -->
+			<div class="nav_right">
+				<a href="#"><i class="fas fa-bars"></i></a>
+			</div>
+				<ul class="nav_box">
+					<li class="exit">
+					<a href="#"><i class="far fa-times-circle" style="color: rgb(0, 7, 110); padding-left: 10px;"></i></a>
+					</li>
+					<li><a href="../../index.html">Home</a></li>
+					<li><a href="../menu/video.html">Mung-Info</a></li>
+					<li><a href="../menu/list.html">Mung-Review</a></li>
+					<li><a href="../menu/list_2.html">Mung-talk</a></li>
+				</ul>
+				<ul class="nav">
+					<li><a href="../login/join.html">JOIN</a></li>
+					<li><a href="../login/login.html">LOGIN</a></li>
+				</ul>
+        </div>
+
+        <div id="container">
+            <h2>게시판List</h2>
+        </div>
+    
+		<table>
+			<colgroup>
+				<col width='60'><col width='300'><col width='100'>
+			</colgroup>
+			<thead>
+				<tr id="table_top">
+					<th>글제목</th>
+					<td name="title" id="title"></td>
+				</tr>
+				<tr id="table_top">
+					<th>글내용</th>
+				</tr>
+				<tr id="table_contetns" style="text-align: center;">
+					<td name="content" id="content"></td>
+				</tr>
+			</thead>
+		</table>
+
+<div>
+	<button id="btn_modify" type="button">글수정</button>
+</div>
+
+		<footer class="footer">
+            <p>© 2021 Mung by kimyeseul</p>
+        </footer>
+
+	<!--js 파일-->
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+    <!-- <script src="../../js/common.js"></script> -->
+	
+    <script>
+			//글조회
+			function showDetail(testId) {
+			var form = document.getElementById("boardForm");
+			var url = "<c:url value='/testDetail.do'/>";
+			url = url + "?testId=" + testId;
+
+			form.action = url;
+			form.submit();
+			}
+
+			$("btn_modify").click(function javascript_onclikc(){
+				$(location).attr('href', 'modify.html');
+			});
+
+
+            $.ajax({
+                type: "get",
+                url: "http://localhost:3000/list",
+                dataType: "json",
+                // data: queryString,
+                success:function(data) {
+                    //정상 요청, 응답 시 처리 작업
+                    console.log(JSON.stringify(data));
+					
+					var result = data.result;
+
+					for(var i=0; i < result.length; i++) {
+						console.log(result[i].ID);
+						console.log(result[i].TITLE);
+						console.log(result[i].CONTENT);
+						console.log(result[i].WDATE);
+
+						$(".name").append(result[i].ID+"<br>");
+						$("#title").append(result[i].TITLE+"<br>");
+						$("#content").append(result[i].TITLE+"<br>"+result[i].CONTENT+"<br>");
+						$(".wdate").append(result[i].WDATE+"<br>");
+					} 
+				},
+                error:function(request,status,error) {
+                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                },
+                complete:function() {
+                    //location.href = "list.html"
+                    //작업 완료 후 처리
+                }
+            });
+    </script>
+
+</body>
+</html>
+

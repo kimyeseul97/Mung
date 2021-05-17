@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mung</title>
+<link rel="stylesheet" href="../../css/common.css">
+<link rel="stylesheet" href="../../css/write.css">
+<link rel="stylesheet" href="../../library/fontawesome-free-5.15.3-web/css/all.min.css">
+</head>
+
+<body>
+	<header>
+		<!-- 메뉴바 -->
+		<div class="gnb">
+            <div class="logo">
+                <a href="./index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
+            </div>
+			<!-- pc메뉴 -->
+			<div class="nav_right">
+				<a href="#"><i class="fas fa-bars"></i></a>
+			</div>
+				<ul class="nav_box">
+					<li><a href="../../index.html">Home</a></li>
+					<li><a href="../menu/video.html">Mung-Info</a></li>
+					<li><a href="../menu/list.html">Mung-Review</a></li>
+					<li><a href="../menu/list_2.html">Mung-talk</a></li>
+					<li class="exit">
+						<a href="#"><i class="far fa-times-circle" style="color: rgb(184, 184, 184);"></i></a>
+					</li>
+				</ul>
+				<ul class="nav">
+					<li><a href="../login/join.html">JOIN</a></li>
+					<li><a href="../login/login.html">LOGIN</a></li>
+				</ul>
+        </div>
+</header>
+
+    <div id="container">
+        <h2>게시글 작성</h2>
+    </div>
+    
+<!-- 게시판 리스트 폼 -->
+	<div class="contents">
+	<form name="testForm" id="testForm">
+		<table class = "table2">
+			<tr>
+			<td>작성자</td>
+			<td><input type = text name="id" id="id" size=60> </td>
+			</tr>
+			<tr>
+			<td>제목</td>
+			<td><input type = text name="title" id="title" size=60></td>
+			</tr>
+			<tr>
+			<td>내용</td>
+			<td><textarea name="content" id="content" cols=85 rows=15 ></textarea></td>
+			</tr>
+			</td>
+			</tr>
+		</table>
+		<input type="button" value="글쓰기" button onclick="to_ajax_2(); return false">
+	</form>
+	</div>
+
+	<div class="container">
+		<div class="container_left">
+			<h3 style="padding-bottom: 10px;">Mung!</h3>
+			<p style="font-size: 20px;">How to be a good puppy owner</p>
+		</div>
+		<div class="container_right">
+			<p style="font-size: 20px; color: rgb(131, 131, 131);">More information</p>
+			<div id="icon">
+			<a href="https://www.youtube.com/results?search_query=%EA%B0%95%EC%95%84%EC%A7%80"><p style="color: rgb(190, 190, 190);"><i class="fab fa-youtube"></i></p></a>
+			<a href="https://www.google.com/search?q=%EA%B0%95%EC%95%84%EC%A7%80%EA%BF%80%ED%8C%81&source=lnms&tbm=vid&sa=X&ved=2ahUKEwjZlqX0y8jwAhWFKqYKHREMB5gQ_AUoAnoECAEQBA&biw=1032&bih=682"><p style="color: rgb(190, 190, 190);"><i class="fab fa-google"></i></p></a>
+			</div>
+		</div>
+	</div>	
+
+
+	<footer class="footer">
+        <p>© 2021 Mung by kimyeseul</p>
+    </footer>
+
+	<!--js 파일-->
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/common.js"></script>
+    <script>
+        function to_ajax_2(){
+            var queryString = $("form[name=testForm]").serialize();
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/write",
+                dataType: "json",
+                data: queryString,
+                success:function(data) {
+                    //정상 요청, 응답 시 처리 작업
+                    console.log(JSON.stringify(data));
+                },
+                error:function(request,status,error) {
+                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					// alert('글이 등록되지 않았습니다');
+                },
+                complete:function() {
+					//작업 완료 후 처리
+					alert('게시글 등록 완료');
+                    location.href = "list_2.html"
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

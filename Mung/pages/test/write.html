@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mung</title>
+<link rel="stylesheet" href="../../css/common.css">
+<link rel="stylesheet" href="../../css/list.css">
+<link rel="stylesheet" href="../../library/fontawesome-free-5.15.3-web/css/all.min.css">
+</head>
+
+<body>
+	<header>
+		<!-- 메뉴바 -->
+		<div class="gnb">
+            <div class="logo">
+                <a href="../../index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
+            </div>
+			<!-- pc메뉴 -->
+			<div class="nav_right">
+				<a href="#"><i class="fas fa-bars"></i></a>
+			</div>
+				<ul class="nav_box">
+					<li class="exit">
+					<a href="#"><i class="far fa-times-circle" style="color: rgb(0, 7, 110); padding-left: 10px;"></i></a>
+					</li>
+						<li><a href="./pages/login/join.html">hOME</a></li>
+						<li><a href="./pages/login/login.html">멍INFO</a></li>
+						<li><a href="./pages/login/login.html">멍REVIEW</a></li>
+						<li><a href="./pages/login/login.html">멍TALK</a></li>
+				</ul>
+				<ul class="nav">
+					<li><a href="../login/join.html">JOIN</a></li>
+					<li><a href="../login/login.html">LOGIN</a></li>
+				</ul>
+							<!-- 모바일메뉴 -->
+			<!-- <div class="menu">
+				<div class="trigger">
+					<a href="#"><i class="fas fa-bars"></i></a>
+				</div>
+					<ul class="ham_box">
+						<li><a href="./pages/login/join.html">JOIN</a></li>
+						<li><a href="./pages/login/login.html">LOGIN</a></li>
+						<li class="exit">
+							<a href="#"><i class="far fa-times-circle" style="color: rgb(15, 15, 15); padding-left: 10px;"></i></a>
+						</li>
+					</ul>
+				</div>
+			<div> -->
+        </div>
+
+        <div id="container">
+            <h2>게시글 작성</h2>
+        </div>
+    <div
+    <form name="testForm" id="testForm">
+        <input type="text" name="id" id="id"/>
+        <input type="text" name="title" id="title"/>
+        <input type="text" name="content" id="content"/>
+        <input type="button" value="확인" onclick="to_ajax(); return false">
+    </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        function to_ajax(){
+            var queryString = $("form[name=testForm]").serialize();
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/writeAf",
+                dataType: "json",
+                data: queryString,
+                success:function(data) {
+                    //정상 요청, 응답 시 처리 작업
+                    console.log(JSON.stringify(data));
+                },
+                error:function(request,status,error) {
+                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                },
+                complete:function to_ajax() {
+                    location.href = "./pages/menu/list.html"
+                    //작업 완료 후 처리
+                }
+            });
+        }
+    </script>
+</body>
+</html>

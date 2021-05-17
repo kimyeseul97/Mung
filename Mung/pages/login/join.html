@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>join</title>
+<link rel="stylesheet" href="../../css/common.css">
+<link rel="stylesheet" href="../../css/login.css">
+<link rel="stylesheet" href="../../library/fontawesome-free-5.15.3-web/css/all.min.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+</head>
+<body>
+	<header>
+		<!-- 메뉴바 -->
+		<div class="gnb">
+			<!-- 로고 -->
+            <div class="logo">
+                <a href="../../index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
+            </div>
+			<!-- pc메뉴 -->
+			<div class="nav_right">
+				<a href="#"><i class="fas fa-bars"></i></a>
+			</div>
+				<ul class="nav_box">
+					<li><a href="../../index.html">Home</a></li>
+					<li><a href="../../pages/menu/video.html">Mung-Info</a></li>
+					<li><a href="../../pages/menu/list.html">Mung-Review</a></li>
+					<li><a href="../../pages/menu/list_2.html">Mung-talk</a></li>
+					<li class="exit">
+						<a href="#"><i class="far fa-times-circle" style="color: rgb(184, 184, 184);"></i></a>
+					</li>
+				</ul>
+				<ul class="nav">
+					<li><a href="../login/join.html">JOIN</a></li>
+					<li><a href="../login/login.html">LOGIN</a></li>
+				</ul>
+        </div>
+</header>
+   
+        <!-- wrapper -->
+        <div id="wrapper">
+            <!-- content-->
+            <div id="content">
+                <h1>sign up</h1>
+                <br>
+
+                <!-- name -->
+                <div>
+                    <h3 class="join_title"><label for="name">이름</label></h3>
+                    <span class="box int_pass">
+                        <input type="text" id="name" class="int" maxlength="20">
+                    </span>
+                </div>
+
+                <!-- ID -->
+                <div>
+                    <h3 class="join_title">
+                        <label for="id">아이디</label>
+                    </h3>
+                    <span class="box int_id">
+                        <input type="text" id="id" class="int" maxlength="20">
+                </div>
+
+                <!-- PW1 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+                    <span class="box int_pass">
+                        <input type="text" id="pswd1" class="int" maxlength="20">
+                    </span>
+                </div>
+
+                <!-- PW2 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd2">비밀번호확인</label></h3>
+                    <span class="box int_pass">
+                        <input type="text" id="pswd2" class="int" maxlength="20">
+                    </span>
+                </div>
+
+                <!-- JOIN BTN-->
+                <div class="btn_area">
+                    <button type="button" id="btnJoin">
+                        <span>가입하기</span>
+                    </button>
+                    <div id="kakao-login-btn"></div>
+                    <!-- <a href="http://developers.kakao.com/login"></a> -->
+                    <!-- 네이버아이디로로그인 버튼 노출 영역 -->
+                    <div id="naver_id_login"></div>
+                </div>
+            </div> 
+            <!-- content-->
+        </div> 
+        <!-- wrapper -->
+        
+        <footer class="footer">
+			<p>© 2021 Mung by kimyeseul</p>
+		</footer>
+
+	<!--js 파일-->
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/login.js"></script>
+	<script src="../../js/common.js"></script>
+        
+    <script>
+    //카카오로그인
+    Kakao.init('e3aaa61ff244ea2fcdf3b04a2c799db6');
+    Kakao.Auth.createLoginButton({ 
+        container: '#kakao-login-btn', 
+        success: function(authObj) { 
+            Kakao.API.request({ 
+                url: '/v2/user/me',
+                success: function(res) {
+                        alert('성공');
+                        location.href = "logout.html"
+                    }
+                    })
+                },
+                fail: function(error) {
+                        alert('실패');
+                        location.href = "login.html"
+                }
+      });
+
+    // 네이버 로그인
+  	var naver_id_login = new naver_id_login("PpzZoUWfaW9ytMWua_3P", "http://127.0.0.1:5501/study/mung/pages/login/logout.html");
+  	var state = naver_id_login.getUniqState();
+
+        naver_id_login.setButton("white", 3,55);
+        naver_id_login.setDomain("http://127.0.0.1:5501/");
+        naver_id_login.setState(state);
+        naver_id_login.setPopup();
+        naver_id_login.init_naver_id_login();
+
+</script>
+</body>
+</html>
+
+</body>
+</html>
+
+
