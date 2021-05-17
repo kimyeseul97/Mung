@@ -56,16 +56,16 @@ app.get('/list_2', function (req, res) {
 
 //게시판상세페이지
 app.get('/detail', function (req, res) {
-    var sql = 'SELECT * FROM BOARD2';    
-    conn.query(sql, function (err, rows, fields) {
+    var sql = 'SELECT FROM BOARD where num=?';    
+    conn.query(sql, function (err, data) {
         if(err) console.log('query is not excuted. select fail...\n' + err);
         else {
             /* 참고 https://hunjang.tistory.com/5 */ 
             var data = req.query.data;
             console.log('GET Parameter = ' + data);
      
-            var result = rows;
-            console.log(rows);
+            // var result = rows;
+            // console.log(rows);
             res.header("Access-Control-Allow-Origin", "*");
             res.send({result:result});
         }
@@ -100,6 +100,10 @@ app.post('/write', function (req, res) {
     });
 });
 
+
+
+
+
 // 게시판 글수정
 app.post('/modify', function (req, res) {
     var idx = req.body.idx;
@@ -113,7 +117,6 @@ app.post('/modify', function (req, res) {
 
     var sql = 'UPDATE BOARD SET(?, ?, ?, NOW())';
     console.log(sql);
-
     conn.query(sql,data, function(err,result)
     {
         if(err) console.error(err);

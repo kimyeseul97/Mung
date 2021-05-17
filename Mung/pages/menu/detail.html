@@ -68,19 +68,9 @@
 
 	<!--js 파일-->
 	<script src="../../js/jquery-3.6.0.min.js"></script>
-    <!-- <script src="../../js/common.js"></script> -->
+    <script src="../../js/common.js"></script>
 	
     <script>
-			//글조회
-			function showDetail(testId) {
-			var form = document.getElementById("boardForm");
-			var url = "<c:url value='/testDetail.do'/>";
-			url = url + "?testId=" + testId;
-
-			form.action = url;
-			form.submit();
-			}
-
 			$("btn_modify").click(function javascript_onclikc(){
 				$(location).attr('href', 'modify.html');
 			});
@@ -88,7 +78,7 @@
 
             $.ajax({
                 type: "get",
-                url: "http://localhost:3000/list",
+                url: "http://localhost:3000/detail",
                 dataType: "json",
                 // data: queryString,
                 success:function(data) {
@@ -96,26 +86,25 @@
                     console.log(JSON.stringify(data));
 					
 					var result = data.result;
+					var result = result.TITLE;
+					var result = result.CONTENT;
 
-					for(var i=0; i < result.length; i++) {
-						console.log(result[i].ID);
-						console.log(result[i].TITLE);
-						console.log(result[i].CONTENT);
-						console.log(result[i].WDATE);
+						$("#title").text(result.TITLE);
+	  					$("#content").text(result.CONTENT);
 
-						$(".name").append(result[i].ID+"<br>");
-						$("#title").append(result[i].TITLE+"<br>");
-						$("#content").append(result[i].TITLE+"<br>"+result[i].CONTENT+"<br>");
-						$(".wdate").append(result[i].WDATE+"<br>");
-					} 
+					// for(var i=0; i < result.length; i++) {
+					// 	console.log(result[i].ID);
+					// 	console.log(result[i].TITLE);
+					// 	console.log(result[i].CONTENT);
+
+					// 	$(".name").append(result[i].ID+"<br>");
+					// 	$("#title").append(result[i].TITLE+"<br>");
+					// 	$("#content").append(result[i].TITLE+"<br>"+result[i].CONTENT+"<br>");
+					// } 
 				},
                 error:function(request,status,error) {
                     console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 },
-                complete:function() {
-                    //location.href = "list.html"
-                    //작업 완료 후 처리
-                }
             });
     </script>
 
