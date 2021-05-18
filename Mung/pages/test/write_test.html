@@ -14,7 +14,7 @@
 		<!-- 메뉴바 -->
 		<div class="gnb">
             <div class="logo">
-                <a href="./index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
+                <a href="../../index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
             </div>
 			<!-- pc메뉴 -->
 			<div class="nav_right">
@@ -56,9 +56,6 @@
 			<td>내용</td>
 			<td><textarea name="content" id="content" cols=85 rows=15 ></textarea></td>
 			</tr>
-			<td>글번호</td>
-			<td><textarea name="content" id="content" cols=85 rows=15 ></textarea></td>
-			</tr>
 		</table>
 		<input type="button" value="글쓰기" button onclick="to_ajax(); return false">
 	</form>
@@ -91,7 +88,7 @@
             var queryString = $("form[name=testForm]").serialize();
             $.ajax({
                 type: "POST",
-                url: "http://localhost:3000/write",
+                url: "http://localhost:3000/write_test",
                 dataType: "json",
                 data: queryString,
                 success:function(data) {
@@ -105,10 +102,11 @@
                 complete:function() {
 					//작업 완료 후 처리
 					alert('게시글 등록 완료');
-                    location.href = "list_2.html"
+                    location.href = "list_test.html"
                 }
             });
         }
+		
     </script>
 </body>
 </html>
