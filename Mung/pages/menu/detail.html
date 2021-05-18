@@ -8,13 +8,12 @@
 <link rel="stylesheet" href="../../css/detail.css">
 <link rel="stylesheet" href="../../library/fontawesome-free-5.15.3-web/css/all.min.css">
 </head>
-
 <body>
 	<header>
 		<!-- 메뉴바 -->
 		<div class="gnb">
             <div class="logo">
-                <a href="./index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
+                <a href="../../index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
             </div>
 			<!-- pc메뉴 -->
 			<div class="nav_right">
@@ -37,7 +36,7 @@
 </header>
 
     <div id="container">
-        <h2>게시글 작성</h2>
+        <h2>게시글 보기</h2>
     </div>
     
 <!-- 게시판 리스트 폼 -->
@@ -45,23 +44,24 @@
 	<form name="testForm" id="testForm">
 		<table class = "table2">
 			<tr>
-			<td>제목</td>
-			<td><p id="title" size=60></p></td>
+			<th>제목</th>
+			<td name="title" id="title"></td>
 			</tr>
 			<tr>
-			<td>내용</td>
-			<td><p id="content" cols=85 rows=15 ></p></td>
+			<th>내용</th>
+			<td name="content" id="content"></td>
 			</tr>
 		</table>
 	</form>
 		<div>
-			<button id="btn_modify" type="button">글수정</button>
-			<button id="btn_list" type="button">글목록</button>
+			<button id="btn_modify" type="button" onClick="location.href='modify.html'">글수정</button>
+			<button id="btn_list" type="button" onClick="location.href='list.html'">글목록</button>
+			<button id="btn_delete" type="button">글삭제</button>
 		</div>
 	</div>
 
 
-
+<!-- 하단 컨테이너 -->
 	<div class="container">
 		<div class="container_left">
 			<h3 style="padding-bottom: 10px;">Mung!</h3>
@@ -82,34 +82,34 @@
     </footer>
 
 	<!--js 파일-->
-	<script src="../../js/jquery-3.6.0.min.js"></script>
+<script src="../../js/jquery-3.6.0.min.js"></script>
 	<script src="../../js/common.js"></script>
     <script>
-        function to_ajax(){
-            var queryString = $("form[name=testForm]").serialize();
-            $.ajax({
+	$.ajax({
                 type: "get",
-                url: "http://localhost:3000/detail",
+                url: "http://localhost:3000/list",
                 dataType: "json",
-                data: queryString,
+                // data: queryString,
                 success:function(data) {
                     //정상 요청, 응답 시 처리 작업
                     console.log(JSON.stringify(data));
 					
 					var result = data.result;
-					var result = result.TITLE;
-					var result = result.CONTENT;
+					var content = result[2].CONTENT;
+					var title = result[2].TITLE;
 
-						$("#title").text(result.TITLE);
-	  					$("#content").text(result.CONTENT);
+					$("#title").append(result[2].TITLE+"<br>");
+					$("#content").append(result[2].CONTENT+"<br>");
+
 				},
                 error:function(request,status,error) {
                     console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 },
-
+                complete:function() {
+                    //location.href = "list.html"
+                    //작업 완료 후 처리
+                }
             });
-        }
     </script>
 </body>
 </html>
-

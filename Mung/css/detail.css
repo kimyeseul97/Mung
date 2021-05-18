@@ -3,15 +3,6 @@
     margin-top: 20px;
 }
 
-.contents #form{
-border-collapse: separate;
-border-spacing: 1px;
-text-align: left;
-line-height: 2.0;
-border-top: 1px solid #ccc;
-margin : 20px 10px;
-}
-
 .table2 tr {
     width: 500px;
     padding: 10px;
@@ -23,10 +14,19 @@ margin : 20px 10px;
 .table2 td {
      padding-right: 10px;
      color: gray;
-     width: 150px;
+     width: 660px;
      padding: 10px;
      vertical-align: top;
      border-bottom: 1px solid #ccc;
+}
+
+.table2 th {
+    padding-right: 10px;
+    color: gray;
+    width: 100px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
 }
 
 .table2 td p{
