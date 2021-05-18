@@ -102,7 +102,6 @@ app.post('/write', function (req, res) {
 //     });
 // });
 
-
 // 게시판 글수정
 // app.post('/modify', function (req, res) {
 //     var idx = req.body.idx;
@@ -129,7 +128,6 @@ app.post('/write', function (req, res) {
 //         }
 //     });
 // });
-
 
 // 회원 테이블
 // app.post('/member', function (req, res) {
