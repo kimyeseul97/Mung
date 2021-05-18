@@ -54,24 +54,6 @@ app.get('/list_2', function (req, res) {
     });
 });
 
-//게시판상세페이지
-app.get('/detail', function (req, res) {
-    var sql = 'SELECT FROM BOARD where num=?';    
-    conn.query(sql, function (err, data) {
-        if(err) console.log('query is not excuted. select fail...\n' + err);
-        else {
-            /* 참고 https://hunjang.tistory.com/5 */ 
-            var data = req.query.data;
-            console.log('GET Parameter = ' + data);
-     
-            // var result = rows;
-            // console.log(rows);
-            res.header("Access-Control-Allow-Origin", "*");
-            res.send({result:result});
-        }
-    });
-});
-
 // 게시판 글쓰기
 app.post('/writeAf', function (req, res) {
     var body = req.body;
@@ -102,49 +84,66 @@ app.post('/write', function (req, res) {
 
 
 
+//게시판상세페이지
+// app.get('/detail', function (req, res) {
+//     var sql = 'SELECT FROM BOARD where num=?';    
+//     conn.query(sql, function (err, data) {
+//         if(err) console.log('query is not excuted. select fail...\n' + err);
+//         else {
+//             /* 참고 https://hunjang.tistory.com/5 */ 
+//             var data = req.query.data;
+//             console.log('GET Parameter = ' + data);
+     
+//             // var result = rows;
+//             // console.log(rows);
+//             res.header("Access-Control-Allow-Origin", "*");
+//             res.send({result:result});
+//         }
+//     });
+// });
 
 
 // 게시판 글수정
-app.post('/modify', function (req, res) {
-    var idx = req.body.idx;
-    var body = req.body;
-    var id = req.body.idx;
-    var title = req.body.title;
-    var content = req.body.content;
-    var data = [body.id, body.title, body.content];
+// app.post('/modify', function (req, res) {
+//     var idx = req.body.idx;
+//     var body = req.body;
+//     var id = req.body.idx;
+//     var title = req.body.title;
+//     var content = req.body.content;
+//     var data = [body.id, body.title, body.content];
 
-    console.log(body);
+//     console.log(body);
 
-    var sql = 'UPDATE BOARD SET(?, ?, ?, NOW())';
-    console.log(sql);
-    conn.query(sql,data, function(err,result)
-    {
-        if(err) console.error(err);
-        if( id == 0)
-        {
-            res.send("<script>alert('수정불가능.');</script>");
-        }
-        else
-        {
-            res.redirect('/list'); // insert후 '/list' 실행
-        }
-    });
-});
+//     var sql = 'UPDATE BOARD SET(?, ?, ?, NOW())';
+//     console.log(sql);
+//     conn.query(sql,data, function(err,result)
+//     {
+//         if(err) console.error(err);
+//         if( id == 0)
+//         {
+//             res.send("<script>alert('수정불가능.');</script>");
+//         }
+//         else
+//         {
+//             res.redirect('/list'); // insert후 '/list' 실행
+//         }
+//     });
+// });
 
 
 // 회원 테이블
-app.post('/member', function (req, res) {
-    var body = req.body;
-    console.log(body);
+// app.post('/member', function (req, res) {
+//     var body = req.body;
+//     console.log(body);
 
-    var sql = 'INSERT INTO member VALUES(?, ?, ?, ?, ? )';
-    var param = [body.memberid, body.password, body.passwordcheck,body.email,body.name];
-    console.log(sql);
-    conn.query(sql, param, function(err) {
-        if(err) console.log('query is not excuted. insert fail...\n' + err);
-        else res.redirect('/'); // insert후 '/list' 실행
-    });
-});
+//     var sql = 'INSERT INTO member VALUES(?, ?, ?, ?, ? )';
+//     var param = [body.memberid, body.password, body.passwordcheck,body.email,body.name];
+//     console.log(sql);
+//     conn.query(sql, param, function(err) {
+//         if(err) console.log('query is not excuted. insert fail...\n' + err);
+//         else res.redirect('/'); // insert후 '/list' 실행
+//     });
+// });
 
 // 데이터 베이스 한글 인코딩
 //ALTER TABLE 테이블명 CONVERT TO CHARACTER SET utf8;
