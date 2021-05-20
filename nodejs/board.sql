@@ -7,5 +7,15 @@ CREATE TABLE BOARD(
     PRIMARY KEY (NUM)
 );
 
-INSERT INTO BOARD(ID, TITLE, CONTENT, WDATE)
-VALUES("person1", "제목", "hi.content", NOW());
+INSERT INTO BOARD(id, title, content, wdate)
+VALUES("person1", "p", "hi.content", NOW());
+
+CREATE TABLE BOARD(
+    num int not null,
+    id VARCHAR(50),
+    title VARCHAR(200),
+    content VARCHAR(1000),
+    wdate DATE,
+    PRIMARY KEY (num)
+);
+
