@@ -5,15 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>mung</title>
 <link rel="stylesheet" href="../../css/common.css">
-<link rel="stylesheet" href="../../css/detail.css">
+<link rel="stylesheet" href="../../css/write.css">
 <link rel="stylesheet" href="../../library/fontawesome-free-5.15.3-web/css/all.min.css">
 </head>
+
 <body>
 	<header>
 		<!-- 메뉴바 -->
 		<div class="gnb">
             <div class="logo">
-                <a href="../../index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
+                <a href="./index.html"><h2><i class="fas fa-paw"></i> mung <i class="fas fa-paw"></i></h2></a>
             </div>
 			<!-- pc메뉴 -->
 			<div class="nav_right">
@@ -36,7 +37,7 @@
 </header>
 
     <div id="container">
-        <h2>게시글 보기</h2>
+        <h2>게시글 수정</h2>
     </div>
     
 <!-- 게시판 리스트 폼 -->
@@ -44,24 +45,24 @@
 	<form name="testForm" id="testForm">
 		<table class = "table2">
 			<tr>
-			<th>제목</th>
-			<td name="title" id="title"></td>
+			<td>작성자</td>
+			<td><input type = text name="id" id="id" size=60> </td>
 			</tr>
 			<tr>
-			<th>내용</th>
-			<td name="content" id="content"></td>
+			<td>제목</td>
+			<td><input type = text name="title" id="title" size=60></td>
+			</tr>
+			<tr>
+			<td>내용</td>
+			<td><textarea name="content" id="content" cols=85 rows=15 ></textarea></td>
+			</tr>
+			</td>
 			</tr>
 		</table>
+		<input type="button" value="글수정" button onclick="to_modify(); return false">
 	</form>
-		<div>
-			<input type="button" value="글삭제" button onclick="to_delete(); return false">
-			<button id="btn_modify" type="button" onClick="location.href='modify.html'">글수정</button>
-			<button id="btn_list" type="button" onClick="location.href='list.html'">글목록</button>
-		</div>
 	</div>
 
-
-<!-- 하단 컨테이너 -->
 	<div class="container">
 		<div class="container_left">
 			<h3 style="padding-bottom: 10px;">Mung!</h3>
@@ -82,55 +83,32 @@
     </footer>
 
 	<!--js 파일-->
-<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/jquery-3.6.0.min.js"></script>
 	<script src="../../js/common.js"></script>
     <script>
-//쿼리스트링 num값 받아오기
-
-	$.ajax({
-                type: "get",
-                url: "http://localhost:3000/detail",
+        function to_midify(){
+            var queryString = $("form[name=testForm]").serialize();
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/modify",
                 dataType: "json",
                 data: queryString,
                 success:function(data) {
                     //정상 요청, 응답 시 처리 작업
-                    console.log(JSON.stringify(data));
-					
-					var result = data.result;
-					var content = result[num].CONTENT;
-					var title = result[num].TITLE;
-
-					$("#title").append(result[num].TITLE+"<br>");
-					$("#content").append(result[num].CONTENT+"<br>");
-
-				},
+                    console.log(JSON.stringify(data));			
+                },
                 error:function(request,status,error) {
                     console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					// alert('글이 등록되지 않았습니다');
                 },
                 complete:function() {
-                    //location.href = "list.html"
-                    //작업 완료 후 처리
+					//작업 완료 후 처리
+					alert('게시글 수정 완료');
+                    location.href = "list.html"
                 }
             });
-
-		//글삭제 클릭시
-		function to_delete(){
-				$.ajax({
-                type: "post",
-                url: "http://localhost:3000/delete",
-                dataType: "json",
-                success:function(data) {
-
-				},
-                error:function(request,status,error) {
-                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                },
-                complete:function() {
-                    //location.href = "list.html"
-                    //작업 완료 후 처리
-                }
-            });
-
+        }
     </script>
 </body>
 </html>
+

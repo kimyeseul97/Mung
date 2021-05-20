@@ -50,7 +50,7 @@
 			<th id="date">날짜</th>
 		</tr>
 		<tr id="table_contetns" style="text-align: center;">
-			<!-- <td class="num"></td>  -->
+			<td class="num" style="display: none;"></td> 
 			<td class="name"></td> 
 			<!-- <p class="content"></p> -->
 			<!-- 제목 클릭시 상세게시판 이동 -->
@@ -73,6 +73,16 @@
     <script src="../../js/common.js"></script>/
 	
     <script>
+
+		//클릭시 생성되는 함수 작성
+        //num 값가져오기
+		//detail.html?num=1 쿼리스트링 형태로 넘겨주기 
+	
+	$("#title").click(function(){
+		var num = $(".num");
+		var queryString = $("detail.html?num=num").serialize();
+	});		
+
 	$("#btn_write").click(function javascript_onclick(){
 		$(location).attr('href', 'write.html');
 	});
@@ -89,15 +99,17 @@
 
 					for(var i=0; i < result.length; i++) {
 
-						console.log(result[i].ID);
-						console.log(result[i].TITLE);
-						console.log(result[i].CONTENT);
-						console.log(result[i].WDATE);
+						console.log(result[i].num);
+						console.log(result[i].id);
+						console.log(result[i].title);
+						console.log(result[i].content);
+						console.log(result[i].wdate);
 
-						$(".name").append(result[i].ID+"<br>");
-						$(".title").append(result[i].TITLE+"<br>");
-						$(".content").append(result[i].CONTENT+"<br>");
-						$(".wdate").append(result[i].WDATE+"<br>");
+						$(".num").append(result[i].num+"<br>");
+						$(".name").append(result[i].id+"<br>");
+						$(".title").append(result[i].title+"<br>");
+						$(".content").append(result[i].content+"<br>");
+						$(".wdate").append(result[i].wdate+"<br>");
 					} 
 				},
                 error:function(request,status,error) {
