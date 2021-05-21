@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -50,7 +50,7 @@
 			<th id="date">날짜</th>
 		</tr>
 		<tr id="table_contetns" style="text-align: center;">
-			<td class="num" style="display: none;"></td> 
+			<td class="num" style="display: block;"></td> 
 			<td class="name"></td> 
 			<!-- <p class="content"></p> -->
 			<!-- 제목 클릭시 상세게시판 이동 -->
@@ -78,6 +78,11 @@
 		$(location).attr('href', 'write.html');
 	});
 
+	function test(num){
+        console.log(num);
+		var redirectURL = "detail.html?num=" + num; 
+        location.href = redirectURL;
+	}
 		//게시판리스트
 		$.ajax({
                 type: "get",
@@ -98,7 +103,7 @@
 						console.log(result[i].content);
 						console.log(result[i].wdate);
 
-						$(".num").append(result[i].num+"<br>");
+						$(".num").append("<a href='#' onclick='test(" + result[i].num + ")'>" + result[i].num + "</a><br>");
 						$(".name").append(result[i].id+"<br>");
 						$(".title").append(result[i].title+"<br>");
 						$(".content").append(result[i].content+"<br>");
@@ -112,36 +117,38 @@
                     //location.href = "list.html"
                     //작업 완료 후 처리
                 }
+				
             });
+
 
 
 
 		//클릭시 생성되는 함수 작성
 		//num 값가져오기
 		// detail.html?num=1 쿼리스트링 형태로 넘겨주기 
-	$(document).ready(function () {
-		$(".title").click(function(){
-			var num = $(".num");
-			var queryString = $("detail.html?num=num[i]").serialize();
-				$.ajax({
-					type: "post",
-					url: "http://localhost:3000/detail",
-					dataType: "json",
-					data: queryString,
-					success:function(data) {
-						//정상 요청, 응답 시 처리 작업
-						console.log(JSON.stringify(data));
-					},
-					error:function(request,status,error) {
-						console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					},
-					complete:function() {
-						//작업 완료 후 처리
-						location.href = "detail.html"
-					}
-				});	
-			});		    
-		});
+	// $(document).ready(function () {
+	// 	$(".title").click(function(){
+	// 		var num = $(".num");
+	// 		// var queryString = $("detail.html?num=num[i]").serialize();
+	// 			$.ajax({
+	// 				type: "post",
+	// 				url: "http://localhost:3000/detail",
+	// 				dataType: "json",
+	// 				data: queryString,
+	// 				success:function(data) {
+	// 					//정상 요청, 응답 시 처리 작업
+	// 					console.log(JSON.stringify(data));
+	// 				},
+	// 				error:function(request,status,error) {
+	// 					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	// 				},
+	// 				complete:function() {
+	// 					//작업 완료 후 처리
+	// 					location.href = "detail.html"
+	// 				}
+	// 			});	
+	// 		});		    
+	// 	});
 
     </script>
 

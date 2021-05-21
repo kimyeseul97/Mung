@@ -88,22 +88,31 @@
 <script>	
 //쿼리스트링 num값 받아오기
 $(document).ready(function () {
-	function getQueryString(num) {
+
+	// 전체 url 가져오기
+var url = location.href;    
+console.log(url);
+
+// 쿼리스트링 파라메터 가져오기
+var urlObj = new URL(url);
+var params = urlObj.searchParams;
+var num = params.get("num");
+console.log(num);
+
 		$.ajax({
 					type: "get",
 					url: "http://localhost:3000/detail",
 					dataType: "json",
-					data: queryString,
 					success:function(data) {
 						//정상 요청, 응답 시 처리 작업
 						console.log(JSON.stringify(data));
 						
 						var result = data.result;
-						var content = result[num].CONTENT;
-						var title = result[num].TITLE;
+						var content = result[i].content;
+						var title = result[i].title;
 
-						$("#title").append(result[num].TITLE+"<br>");
-						$("#content").append(result[num].CONTENT+"<br>");
+						$("#title").append(result[i].title+"<br>");
+						$("#content").append(result[i].content+"<br>");
 
 					},
 					error:function(request,status,error) {
@@ -115,23 +124,26 @@ $(document).ready(function () {
 					}
 				});
 
-		//글삭제 클릭시
-		function to_delete(){
-				$.ajax({
-                type: "post",
-                url: "http://localhost:3000/delete",
-                dataType: "json",
-                success:function(data) {
 
-				},
-                error:function(request,status,error) {
-                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                },
-                complete:function() {
-                    //location.href = "list.html"
-                    //작업 완료 후 처리
-                }
-            });
+		//글삭제 클릭시
+		// function to_delete(){
+		// 		$.ajax({
+        //         type: "post",
+        //         url: "http://localhost:3000/delete",
+        //         dataType: "json",
+        //         success:function(data) {
+
+		// 		},
+        //         error:function(request,status,error) {
+        //             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        //         },
+        //         complete:function() {
+        //             //location.href = "list.html"
+        //             //작업 완료 후 처리
+        //         }
+        //     });
+		// }
+		});
 
     </script>
 </body>
