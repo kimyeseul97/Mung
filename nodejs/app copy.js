@@ -17,6 +17,7 @@ app.get('/', function (req, res) {
 // get 전송 (게시판리스트)_1
 app.get('/list', function (req, res) {
     var sql = 'SELECT * FROM BOARD';    
+    var num = req.num;
     conn.query(sql, function (err, rows, fields) {
         if(err) console.log('query is not excuted. select fail...\n' + err);
         else {
@@ -47,17 +48,22 @@ app.post('/writeAf', function (req, res) {
     });
 });
 
-//게시판리스트 상세페이지
-app.post('/detail', function (req, res) {
-    var data = req.query.data;
-    console.log('GET Parameter = ' + data);
-    var sql = 'SELECT * FROM BOARD(id, title, content) where num=1';
-    var param = [body.id, body.title, body.content];
+    // get 전송 (게시판리스트)_1
+app.get('/detail', function (req, res) {
+    var num = req.num;
+    var sql = 'SELECT * FROM BOARD where num=2';
     console.log(sql);
-    console.log("param: " + param);
-    conn.query(sql, param, function(err) {
-        if(err) console.log('query is not excuted. insert fail...\n' + err);
-        else res.redirect('/'); 
+    conn.query(sql, function (err, rows, fields) {
+        if(err) console.log('query is not excuted. select fail...\n' + err);
+        else {
+            var data = req.query.data;
+            console.log('GET Parameter = ' + data);
+     
+            var result = rows;
+            console.log(rows);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.send({result:result});
+        }
     });
 });
 
