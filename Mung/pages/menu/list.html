@@ -73,20 +73,13 @@
     <script src="../../js/common.js"></script>/
 	
     <script>
-
-		//클릭시 생성되는 함수 작성
-        //num 값가져오기
-		//detail.html?num=1 쿼리스트링 형태로 넘겨주기 
-	
-	$("#title").click(function(){
-		var num = $(".num");
-		var queryString = $("detail.html?num=num").serialize();
-	});		
-
+	// 글쓰기버튼클릭
 	$("#btn_write").click(function javascript_onclick(){
 		$(location).attr('href', 'write.html');
 	});
-            $.ajax({
+
+		//게시판리스트
+		$.ajax({
                 type: "get",
                 url: "http://localhost:3000/list",
                 dataType: "json",
@@ -120,6 +113,36 @@
                     //작업 완료 후 처리
                 }
             });
+
+
+
+		//클릭시 생성되는 함수 작성
+		//num 값가져오기
+		// detail.html?num=1 쿼리스트링 형태로 넘겨주기 
+	$(document).ready(function () {
+		$(".title").click(function(){
+			var num = $(".num");
+			var queryString = $("detail.html?num=num[i]").serialize();
+				$.ajax({
+					type: "post",
+					url: "http://localhost:3000/detail",
+					dataType: "json",
+					data: queryString,
+					success:function(data) {
+						//정상 요청, 응답 시 처리 작업
+						console.log(JSON.stringify(data));
+					},
+					error:function(request,status,error) {
+						console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					},
+					complete:function() {
+						//작업 완료 후 처리
+						location.href = "detail.html"
+					}
+				});	
+			});		    
+		});
+
     </script>
 
 </body>

@@ -19,3 +19,17 @@ CREATE TABLE BOARD(
     PRIMARY KEY (num)
 );
 
+// 데이터 베이스 한글 인코딩
+//ALTER TABLE 테이블명 CONVERT TO CHARACTER SET utf8;
+
+
+//게시판 테이블
+CREATE TABLE board (
+   num int NOT NULL,
+   id VARCHAR(50),
+   title varchar(300) NOT NULL,
+   content varchar(100) NOT NULL,
+   wdate DATE,
+ );
+  
+
