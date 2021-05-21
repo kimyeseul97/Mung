@@ -23,13 +23,15 @@ CREATE TABLE BOARD(
 //ALTER TABLE 테이블명 CONVERT TO CHARACTER SET utf8;
 
 
-//게시판 테이블
+
+
+  //게시판 테이블
 CREATE TABLE board (
-   num int NOT NULL,
+   num int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
    id VARCHAR(50),
    title varchar(300) NOT NULL,
-   content varchar(100) NOT NULL,
    wdate DATE,
+   content varchar(100) NOT NULL
  );
   
 
