@@ -25,7 +25,7 @@ CREATE TABLE BOARD(
 
 
 
-  //게시판 테이블
+//게시판 테이블
 CREATE TABLE board (
    num int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
    id VARCHAR(50),
